@@ -40,33 +40,39 @@ module.exports = new Confidence.Store({
             {
                 plugin: '@hapipal/schwifty',
                 options: {
-                    $filter: 'NODE_ENV',
-                    $default: {},
+                    $filter: { $env: 'NODE_ENV' }, // Correctly filter on the environment variable
                     $base: {
                         migrateOnStart: true,
                         knex: {
-                            client: 'sqlite3',
-                            useNullAsDefault: true,     // Suggested for sqlite3
-                            connection: {
-                                filename: ':memory:'
-                            },
                             migrations: {
                                 stub: Schwifty.migrationsStubPath
                             }
                         }
                     },
                     production: {
-                        migrateOnStart: false
+                        migrateOnStart: false, // Usually false in prod to run migrations manually
+                        knex: {
+                            client: 'mysql',
+                            connection: {
+                                host: process.env.DB_HOST || '0.0.0.0',
+                                user: process.env.DB_USER || 'root',
+                                password: process.env.DB_PASSWORD || 'hapi',
+                                database: process.env.DB_DATABASE || 'user',
+                                port: process.env.DB_PORT || 3306
+                            }
+                        }
+                    },
+                    $default: { // Used for development (SQLite)
+                        knex: {
+                            client: 'sqlite3',
+                            useNullAsDefault: true,
+                            connection: {
+                                filename: ':memory:'
+                            }
+                        }
                     }
                 }
             },
-            {
-                plugin: {
-                    $filter: { $env: 'NODE_ENV' },
-                    $default: '@hapipal/hpal-debug',
-                    production: Toys.noop
-                }
-            }
         ]
     }
 });
