@@ -25,7 +25,7 @@ module.exports = {
                             'in': 'header'
                         }
                     },
-                    security: [{ 'jwt': [] }],
+                    security: [{ 'jwt': [] }]
                 }
             }
         ]);
