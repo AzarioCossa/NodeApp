@@ -23,6 +23,7 @@
     "@hugoheml/iut-encrypt": "^1.0.0",
     "exiting": "6.0.1",
     "joi": "17.x.x",
+    "nodemailer": "^8.0.1",
     "objection": "2.x.x",
     "sqlite3": "5.0.2"
   },
