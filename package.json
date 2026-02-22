@@ -21,6 +21,7 @@
     "@hapipal/schmervice": "^3.0.0",
     "@hapipal/schwifty": "6.x.x",
     "@hugoheml/iut-encrypt": "^1.0.0",
+    "amqplib": "^0.10.9",
     "exiting": "6.0.1",
     "joi": "17.x.x",
     "nodemailer": "^8.0.1",
