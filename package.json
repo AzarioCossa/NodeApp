@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "node server",
-    "test": "lab -a @hapi/code -I \"__core-js_shared__,CSS,regeneratorRuntime,core\" -L",
+    "test": "lab -a @hapi/code -l",
+    "test-cov": "lab -a @hapi/code -l -c",
     "lint": "eslint ."
   },
   "dependencies": {
